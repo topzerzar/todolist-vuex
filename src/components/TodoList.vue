@@ -4,7 +4,7 @@
       <input class="input is-expanded" type="text" placeholder="Please Enter Character." v-model="message">
       <button class="button is-info" @click="addToList">Add</button>
     </div>
-    <item v-for="item in listMessage" :headertitle="item" ></item>
+    <item v-for="item in getValue" :headertitle="item" ></item>
   </div>
 </template>
 
@@ -24,9 +24,16 @@ export default {
   },
   methods: {
     addToList() {
-      // this.$store.state.listDatas.push(this.message);
-      this.listMessage.push(this.message);
+      // ### Call mutation don't have action
+      this.$store.commit('addToList', this.message);
+      // ### call store
+      // this.$store.state.listData.push(this.message);
       this.message = '';
+    },
+  },
+  computed: {
+    getValue() {
+      return this.$store.state.listData;
     },
   },
 };
