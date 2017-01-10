@@ -2,13 +2,14 @@
   <div>
     <div class="control has-addons">
       <input class="input is-expanded" type="text" placeholder="Please Enter Character." v-model="message">
-      <button class="button is-info" @click="addToList">Add</button>
+      <button class="button is-info" @click="addToList(message)">Add</button>
     </div>
     <item v-for="item in getValue" :headertitle="item" ></item>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import Item from './Item';
 
 export default {
@@ -23,13 +24,17 @@ export default {
     };
   },
   methods: {
-    addToList() {
-      // ### Call mutation don't have action
-      this.$store.commit('addToList', this.message);
-      // ### call store
-      // this.$store.state.listData.push(this.message);
-      this.message = '';
-    },
+    ...mapMutations([
+        'addToList', // this.$store.commit('addToList', this.message); || addToList(message) message send parameter
+        'remove',
+    ]),
+    // addToList() {
+    //   // ### Call mutation don't have action
+    //   this.$store.commit('addToList', this.message);
+    //   // ### call store
+    //   // this.$store.state.listData.push(this.message);
+    //   this.message = '';
+    // },
   },
   computed: {
     getValue() {
