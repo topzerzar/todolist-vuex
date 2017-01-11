@@ -15,6 +15,11 @@ const store = new Vuex.Store({
             state.listData.pop(message);
         },
     },
+    actions: {
+        addToList: ({ commit }, message) => {
+            commit('addToList', message);
+        },
+    },
 });
 
 export default store;

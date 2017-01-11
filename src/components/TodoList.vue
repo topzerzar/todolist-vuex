@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 import Item from './Item';
 
 export default {
@@ -24,10 +24,14 @@ export default {
     };
   },
   methods: {
-    ...mapMutations([
-        'addToList', // this.$store.commit('addToList', this.message); || addToList(message) message send parameter
-        'remove',
+    ...mapActions([
+      'addToList',
+      'remove',
     ]),
+    // ...mapMutations([
+    //     'addToList', // this.$store.commit('addToList', this.message);
+    //     'remove',
+    // ]),
     // addToList() {
     //   // ### Call mutation don't have action
     //   this.$store.commit('addToList', this.message);
