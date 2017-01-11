@@ -2,11 +2,11 @@
     <div class="item" v-show="isVisible">
         <article class="message is-primary">
             <div class="message-header">
-                <p>{{ headertitle }}</p>
-                <button class="delete" @click="closeItem()"></button>
+                <p>{{ index }}</p>
+                <button class="delete" @click="removeItemList(message)"></button>
             </div>
             <div class="message-body">
-                {{ headertitle }}
+                {{ message }}
             </div>
         </article>
     </div>
@@ -14,18 +14,20 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
     name: 'item',
-    props: ['headertitle'],
+    props: ['message', 'index'],
     data() {
         return {
             isVisible: true,
         };
     },
     methods: {
-        closeItem() {
-            this.isVisible = false;
-        },
+        ...mapActions([
+            'removeItemList',
+        ]),
     },
 };
 </script>

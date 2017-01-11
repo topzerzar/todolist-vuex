@@ -2,14 +2,14 @@
   <div>
     <div class="control has-addons">
       <input class="input is-expanded" type="text" placeholder="Please Enter Character." v-model="message">
-      <button class="button is-info" @click="addToList(message)">Add</button>
+      <button class="button is-info" @click="addToList(message), clearData()">Add</button>
     </div>
-    <item v-for="item in getValue" :headertitle="item" ></item>
+    <item v-for="(value, index) in getListData" :message="value" :index="index+1" ></item>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import Item from './Item';
 
 export default {
@@ -24,10 +24,15 @@ export default {
     };
   },
   methods: {
-    ...mapActions([
-      'addToList',
-      'remove',
-    ]),
+    ...mapActions({
+      addToList: 'addToList',
+    }),
+    clearData() {
+      this.message = '';
+    },
+    // addToList(message) {
+    //   this.$store.dispatch('addToList', message);
+    // }
     // ...mapMutations([
     //     'addToList', // this.$store.commit('addToList', this.message);
     //     'remove',
@@ -41,9 +46,9 @@ export default {
     // },
   },
   computed: {
-    getValue() {
-      return this.$store.state.listData;
-    },
+    ...mapGetters([
+      'getListData',
+    ]),
   },
 };
 </script>
