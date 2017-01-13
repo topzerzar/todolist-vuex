@@ -1,17 +1,22 @@
 <template>
   <div id="app">
-    <h1>TO DO LIST</h1>
-    <TodoList class="container"></TodoList>
+    <HeaderView></HeaderView>
+    <TodoList class="container listBody"></TodoList>
+    <FooterView></FooterView>
   </div>
 </template>
 
 <script>
 import TodoList from './components/TodoList';
+import FooterView from './components/Footer';
+import HeaderView from './components/Header';
 
 export default {
   name: 'app',
   components: {
+    HeaderView,
     TodoList,
+    FooterView,
   },
 };
 </script>
@@ -23,9 +28,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
 .container {
   padding: 40px;
+}
+
+.listBody {
+  min-height: 500px;
 }
 </style>
