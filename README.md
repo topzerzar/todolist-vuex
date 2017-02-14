@@ -1,6 +1,6 @@
-# workshop-todolist
+# todolist-vuex
 
-> todolist
+todo list use vuex
 
 ## Build Setup
 
